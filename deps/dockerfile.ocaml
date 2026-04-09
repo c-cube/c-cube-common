@@ -20,6 +20,7 @@ ARG OCAML_VERSION
 ARG OPAM_REPO_COMMIT=master
 ARG BASE_PACKAGES=""
 
+COPY strip_ocaml.sh ./
 RUN git init /tmp/opam-repo && cd /tmp/opam-repo && \
     git remote add origin https://github.com/ocaml/opam-repository.git && \
     git fetch --depth 1 origin $OPAM_REPO_COMMIT && \
@@ -30,6 +31,7 @@ RUN opam init --disable-sandboxing --bare --no-setup -k local /tmp/opam-repo && 
 
 RUN opam install --no-depexts $BASE_PACKAGES && \
     opam clean -a -y && \
+    ./strip_ocaml.sh && \
     rm -rf /tmp/opam-repo
 
 # --- Stage 3: final image (base + switch only) ---
