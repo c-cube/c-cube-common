@@ -5,7 +5,7 @@ CI_VERSIONS = 4.08 4.14 5.0 5.4
 
 # To update: curl -s https://api.github.com/repos/ocaml/opam-repository/commits/master | jq -r .sha
 OPAM_REPO_COMMIT ?= 67472cd54293d750a62d6d4423024d55f77268b0
-CI_BASE_OS_PACKAGES = pkg-config libcurl4-openssl-dev libgmp-dev mccs
+CI_BASE_OS_PACKAGES = pkg-config libcurl4-openssl-dev libgmp-dev mccs libjemalloc-dev
 
 CI_COMMON_PACKAGES = dune ptime hmap pbrt pbrt_yojson ambient-context mtime alcotest
 
