@@ -1,7 +1,7 @@
 #k
 # CI Docker images — included by top-level Makefile
 CI_REGISTRY = ghcr.io/c-cube/c-cube-commmon
-CI_VERSIONS = 4.08 4.14 5.0 5.4
+CI_VERSIONS = 4.08 4.14 5.0 5.1 5.4
 
 # To update: curl -s https://api.github.com/repos/ocaml/opam-repository/commits/master | jq -r .sha
 OPAM_REPO_COMMIT ?= 67472cd54293d750a62d6d4423024d55f77268b0
@@ -27,6 +27,9 @@ build-4.14:
 
 build-5.0:
 	$(CI_BUILD) --build-arg OCAML_VERSION=5.0.0  --build-arg "BASE_PACKAGES=$(CI_PACKAGES_50)"     -t $(CI_REGISTRY)/ci-5.0:latest .
+
+build-5.1:
+	$(CI_BUILD) --build-arg OCAML_VERSION=5.1.1  --build-arg "BASE_PACKAGES=$(CI_PACKAGES_50)"     -t $(CI_REGISTRY)/ci-5.1:latest .
 
 build-5.3:
 	$(CI_BUILD) --build-arg OCAML_VERSION=5.3.0  --build-arg "BASE_PACKAGES=$(CI_PACKAGES_53_DOC)" -t $(CI_REGISTRY)/ci-doc-5.3:latest .
