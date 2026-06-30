@@ -4,7 +4,7 @@ CI_REGISTRY = ghcr.io/c-cube/c-cube-commmon
 CI_VERSIONS = 4.14 5.0 5.1 5.4
 
 # To update: curl -s https://api.github.com/repos/ocaml/opam-repository/commits/master | jq -r .sha
-OPAM_REPO_COMMIT ?= 7103cbf7d886d93402af1c852db818b4a3fba7ec
+OPAM_REPO_COMMIT ?= 8cd35acddd18fa903782ac90de78467ca3e3b506
 CI_BASE_OS_PACKAGES = pkg-config libcurl4-openssl-dev libgmp-dev mccs libjemalloc-dev
 
 CI_COMMON_PACKAGES = dune ptime hmap pbrt pbrt_yojson ambient-context mtime alcotest
