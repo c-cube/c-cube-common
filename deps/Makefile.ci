@@ -1,7 +1,7 @@
 #k
 # CI Docker images — included by top-level Makefile
 CI_REGISTRY = ghcr.io/c-cube/c-cube-commmon
-CI_VERSIONS = 4.14 5.0 5.1 5.4
+CI_VERSIONS = 4.14 5.0 5.1 5.4 5.5
 
 # To update: curl -s https://api.github.com/repos/ocaml/opam-repository/commits/master | jq -r .sha
 OPAM_REPO_COMMIT ?= 8cd35acddd18fa903782ac90de78467ca3e3b506
@@ -14,6 +14,7 @@ CI_PACKAGES_414 = $(CI_COMMON_PACKAGES) ocamlformat.0.27.0
 CI_PACKAGES_50  = $(CI_COMMON_PACKAGES)
 CI_PACKAGES_53_DOC = $(CI_COMMON_PACKAGES) ocamlformat.0.27.0 odig odoc
 CI_PACKAGES_54  = $(CI_COMMON_PACKAGES)
+CI_PACKAGES_55  = $(CI_COMMON_PACKAGES)
 
 CI_BUILD = docker build -f deps/dockerfile.ocaml \
     --build-arg OPAM_REPO_COMMIT=$(OPAM_REPO_COMMIT) \
@@ -33,6 +34,9 @@ build-5.3:
 
 build-5.4:
 	$(CI_BUILD) --build-arg OCAML_VERSION=5.4.1  --build-arg "BASE_PACKAGES=$(CI_PACKAGES_54)"  -t $(CI_REGISTRY)/ci-5.4:latest .
+
+build-5.5:
+	$(CI_BUILD) --build-arg OCAML_VERSION=5.5.0  --build-arg "BASE_PACKAGES=$(CI_PACKAGES_55)"  -t $(CI_REGISTRY)/ci-5.5:latest .
 
 build-ci-docker: build-4.14 build-5.0 build-5.3 build-5.4
 
